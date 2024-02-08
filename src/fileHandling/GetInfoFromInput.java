@@ -58,7 +58,6 @@ public class GetInfoFromInput {
         if(this.amountOfMoney == null) {//if the amount of money is not given, or given incorrectly, ex: 123-123_123-123_YYY(without '_' in the end)
             throw new InvalidAmountOfMoneyException(null, getFromFile, this.invoiceFrom, this.invoiceTo, null);
         }
-        
     }
     public String getInvoiceFrom() {
         return invoiceFrom;

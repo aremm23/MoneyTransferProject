@@ -5,6 +5,7 @@ import Exceptions.InvalidFilePatternException;
 import Exceptions.InvalidInvoiceException;
 import fileHandling.GetInfoFromInput;
 import fileHandling.GetInfoFromInvoices;
+import fileHandling.MoveToArchive;
 import fileHandling.PutInfoToReport;
 
 import java.io.*;
@@ -33,41 +34,39 @@ public class Transaction {
             listWithFilesFromInput = new ArrayList<>(List.of(arrayWithFilesFromInput));//add files to list
             String invoiceFrom, invoiceTo;
             Integer transactionSum;
-            for (File transactionFile:listWithFilesFromInput) {
+            for (File transactionFile : listWithFilesFromInput) {
                 GetInfoFromInput infoFromInput = null; //infoFromInput is used to get information from transaction file
                 try {
-                        infoFromInput = new GetInfoFromInput(transactionFile);
-                        invoiceFrom = infoFromInput.getInvoiceFrom();
-                        invoiceTo = infoFromInput.getInvoiceTo();
-                        transactionSum = infoFromInput.getAmountOfMoney();
-                        Integer amountOfMoney = hashMapWithInvoices.get(invoiceFrom);
-                        if (amountOfMoney < transactionSum) {
-                            throw new InvalidAmountOfMoneyException(transactionSum, invoiceFrom, invoiceTo, transactionSum);
-                        }
-                        if (!hashMapWithInvoices.containsKey(invoiceFrom))
-                            throw new InvalidInvoiceException(invoiceFrom, transactionFile.getName());
-                        if (!hashMapWithInvoices.containsKey(invoiceTo))
-                            throw new InvalidInvoiceException(invoiceTo, transactionFile.getName());
-                        try {
-                            hashMapWithInvoices.replace(invoiceFrom, amountOfMoney - transactionSum);
-                            hashMapWithInvoices.replace(invoiceTo, hashMapWithInvoices.get(invoiceTo) + transactionSum);
-                        } catch (NullPointerException e) {
-                            System.out.println(e.getMessage());
-                            PutInfoToReport.putInfoToReport(transactionFile.getName(), e, invoiceFrom, invoiceTo, transactionSum);
-                        }
-                        PutInfoToReport.putInfoToReport(transactionFile.getName(), null, invoiceFrom, invoiceTo, transactionSum);//put information about the transaction to report.txt file
-                    } catch (InvalidFilePatternException e) { //if the transaction file has invalid pattern
-                        System.out.println(e.toString());
-                        PutInfoToReport.putInfoToReport(transactionFile.getName(), e);
-                    } catch (InvalidAmountOfMoneyException e) {//if the amount of money is not enough to perform the transaction
-                        System.out.println(e.toString());
-                    PutInfoToReport.putInfoToReport(transactionFile.getName(), e);
-                    } catch (InvalidInvoiceException e) { //if there is no such invoice
-                        System.out.println(e.toString());
-                        PutInfoToReport.putInfoToReport(transactionFile.getName(), e, infoFromInput.getInvoiceFrom(), infoFromInput.getInvoiceTo(), infoFromInput.getAmountOfMoney());
+                    infoFromInput = new GetInfoFromInput(transactionFile);
+                    invoiceFrom = infoFromInput.getInvoiceFrom();
+                    invoiceTo = infoFromInput.getInvoiceTo();
+                    transactionSum = infoFromInput.getAmountOfMoney();
+                    Integer amountOfMoney = hashMapWithInvoices.get(invoiceFrom);
+                    if (amountOfMoney < transactionSum) {
+                        throw new InvalidAmountOfMoneyException(transactionSum, invoiceFrom, invoiceTo, transactionSum);
                     }
+                    if (!hashMapWithInvoices.containsKey(invoiceFrom))
+                        throw new InvalidInvoiceException(invoiceFrom, transactionFile.getName());
+                    if (!hashMapWithInvoices.containsKey(invoiceTo))
+                        throw new InvalidInvoiceException(invoiceTo, transactionFile.getName());
+                    hashMapWithInvoices.replace(invoiceFrom, amountOfMoney - transactionSum);
+                    hashMapWithInvoices.replace(invoiceTo, hashMapWithInvoices.get(invoiceTo) + transactionSum);
+                    PutInfoToReport.putInfoToReport(transactionFile.getName(), null, invoiceFrom, invoiceTo, transactionSum);//put information about the transaction to report.txt file
+                } catch (InvalidFilePatternException e) { //if the transaction file has invalid pattern
+                    System.out.println(e.toString());
+                    PutInfoToReport.putInfoToReport(transactionFile.getName(), e);
+                } catch (
+                        InvalidAmountOfMoneyException e) {//if the amount of money is not enough to perform the transaction
+                    System.out.println(e.toString());
+                    PutInfoToReport.putInfoToReport(transactionFile.getName(), e);
+                } catch (InvalidInvoiceException e) { //if there is no such invoice
+                    System.out.println(e.toString());
+                    PutInfoToReport.putInfoToReport(transactionFile.getName(), e, infoFromInput.getInvoiceFrom(), infoFromInput.getInvoiceTo(), infoFromInput.getAmountOfMoney());
+                } catch (NullPointerException e) {
+                    System.out.println("Error. Something went wrong");
                 }
-            System.out.println(hashMapWithInvoices);
+            }
+            MoveToArchive.moveFilesToArchive(archiveDir, arrayWithFilesFromInput);//move files to archive
         }
     }
 }

@@ -2,3 +2,23 @@
 2024-02-07T21:06:40.205694900 | tr2.txt | from 33333-44444  to 55555-66666 | 200 |  Ended successfully
 2024-02-07T21:06:40.206760600 | tr3.txt | from 77777-88888  to 99999-10101 | 300 | Invalid invoice "99999-10101" founded in file tr3.txt |
 2024-02-07T21:06:40.209919200 | tr4.txt | from 77777-88888  to 33333-44444 | 100000 | There are less money on invoice then transaction sum (100000) |
+2024-02-08T09:14:19.902404400 | tr1.txt | from null  to null | null | Invalid string "11111t-22222" founded in file tr1.txt |
+2024-02-08T09:14:19.917481 | tr2.txt | from 33333-44444  to 55555-66666 | 200 |  Ended successfully
+2024-02-08T09:14:19.925727500 | tr3.txt | from 77777-88888  to 99999-10101 | 300 | Invalid invoice "99999-10101" founded in file tr3.txt |
+2024-02-08T09:14:19.934813400 | tr4.txt | from 77777-88888  to 33333-44444 | 100000 | There are less money on invoice then transaction sum (100000) |
+2024-02-08T09:18:20.153356800 | tr1.txt | from null  to null | null | Invalid string "11111t-22222" founded in file tr1.txt |
+2024-02-08T09:18:20.167509800 | tr2.txt | from 33333-44444  to 55555-66666 | 200 |  Ended successfully
+2024-02-08T09:18:20.177617200 | tr3.txt | from 77777-88888  to 99999-10101 | 300 | Invalid invoice "99999-10101" founded in file tr3.txt |
+2024-02-08T09:18:20.188814700 | tr4.txt | from 77777-88888  to 33333-44444 | 100000 | There are less money on invoice then transaction sum (100000) |
+2024-02-08T09:23:14.936724400 | tr1.txt | from null  to null | null | Invalid string "11111t-22222" founded in file tr1.txt |
+2024-02-08T09:23:14.944966400 | tr2.txt | from 33333-44444  to 55555-66666 | 200 |  Ended successfully
+2024-02-08T09:23:14.947053700 | tr3.txt | from 77777-88888  to 99999-10101 | 300 | Invalid invoice "99999-10101" founded in file tr3.txt |
+2024-02-08T09:23:14.950577700 | tr4.txt | from 77777-88888  to 33333-44444 | 100000 | There are less money on invoice then transaction sum (100000) |
+2024-02-08T09:23:59.681295400 | tr1.txt | from null  to null | null | Invalid string "11111t-22222" founded in file tr1.txt |
+2024-02-08T09:23:59.691485800 | tr2.txt | from   to  | null | Invalid amount of money (null) in file tr2.txt |
+2024-02-08T09:23:59.692543700 | tr3.txt | from   to  | null | Invalid amount of money (null) in file tr3.txt |
+2024-02-08T09:23:59.693537700 | tr4.txt | from   to  | null | Invalid amount of money (null) in file tr4.txt |
+2024-02-08T09:24:52.993831100 | tr1.txt | from null  to null | null | Invalid string "11111t-22222" founded in file tr1.txt |
+2024-02-08T09:24:53.000484 | tr2.txt | from 33333-44444  to 55555-66666 | 200 |  Ended successfully
+2024-02-08T09:24:53.001427100 | tr3.txt | from 77777-88888  to 99999-10101 | 300 | Invalid invoice "99999-10101" founded in file tr3.txt |
+2024-02-08T09:24:53.003426700 | tr4.txt | from 77777-88888  to 33333-44444 | 100000 | There are less money on invoice then transaction sum (100000) |
